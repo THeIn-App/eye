@@ -11,12 +11,13 @@ export const SUBSCRIPTION_TIERS: SubscriptionTier[] = [
       'Initial Capital Estimates',
       'General Industry Overviews',
       'Single Inquiry Access'
-    ]
+    ],
+    paypalPlanId: 'P-65M00946643785250NGOXOCY'
   },
   {
     id: 'professional',
     name: 'Professional',
-    price: '$49/mo',
+    price: '$55/mo',
     description: 'Complete toolkit for standard small-to-medium enterprises.',
     features: [
       'Comprehensive Business Planner',
@@ -24,7 +25,8 @@ export const SUBSCRIPTION_TIERS: SubscriptionTier[] = [
       'Marketing & Ads (PROMADS) Advisory',
       'HR & Recruitment Templates',
       'Standard Org Structures & JDs'
-    ]
+    ],
+    paypalPlanId: 'P-3FW47156RY006220SNGOXQNQ'
   },
   {
     id: 'enterprise',
@@ -37,7 +39,8 @@ export const SUBSCRIPTION_TIERS: SubscriptionTier[] = [
       'Executive Committee Org Designs',
       'LPG Refilling Specialist Data',
       '1-on-1 Interactive Sessions with EYE'
-    ]
+    ],
+    paypalPlanId: 'P-42J26778RS834492HNGOXU3I'
   }
 ];
 

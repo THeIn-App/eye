@@ -6,6 +6,7 @@ export interface SubscriptionTier {
   price: string;
   features: string[];
   description: string;
+  paypalPlanId: string;
 }
 
 export interface JobDescription {
