@@ -1,3 +1,35 @@
+export type SubscriptionLevel = 'trial' | 'professional' | 'enterprise';
+
+export interface SubscriptionTier {
+  id: SubscriptionLevel;
+  name: string;
+  price: string;
+  features: string[];
+  description: string;
+}
+
+export interface JobDescription {
+  role: string;
+  responsibilities: string[];
+  requirements: string[];
+}
+
+export interface OrgNode {
+  role: string;
+  department: string;
+  jd?: JobDescription;
+  children?: OrgNode[];
+}
+
+export interface BusinessService {
+  id: string;
+  label: string;
+  icon: string;
+  description: string;
+  trialContent: string;
+  proContent: string;
+}
+
 export interface ChecklistItem {
   id: string;
   category: string;
@@ -15,10 +47,4 @@ export interface DiscussionContent {
     description: string;
   };
   pitfalls: string[];
-}
-
-export interface ChartData {
-  name: string;
-  value: number;
-  secondary?: number;
 }
