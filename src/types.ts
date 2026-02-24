@@ -48,3 +48,22 @@ export interface DiscussionContent {
   };
   pitfalls: string[];
 }
+
+export interface VaultComment {
+  id: string;
+  author: string;
+  timestamp: string;
+  text: string;
+}
+
+export interface VaultArticle {
+  id: string;
+  title: string;
+  category: string;
+  expertNote: string;
+  date: string;
+  contentType: 'text' | 'video';
+  content: string; // Markdown or description
+  videoUrl?: string;
+  comments: VaultComment[];
+}

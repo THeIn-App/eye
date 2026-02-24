@@ -198,3 +198,40 @@ If you are scaling to an **LPG Plant**, the market shift is toward safety standa
     ],
   },
 ];
+
+export const EYE_VAULT_ARTICLES: VaultArticle[] = [
+  {
+    id: 'lpg-plant-efficiency',
+    title: 'Proprietary LPG Terminal Optimization',
+    category: 'Industrial Scale',
+    expertNote: 'Discovered during the 2024 Luzon Logistics Audit. Distribution density is the primary lever.',
+    date: 'February 20, 2026',
+    contentType: 'video',
+    content: 'An deep-dive into the proprietary "Last Mile" distribution hub design that reduces overhead by 32%.',
+    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Placeholder
+    comments: [
+      { id: 'c1', author: 'Strategic Partner', timestamp: '2 hours ago', text: 'The distribution density chart is a game changer.' }
+    ]
+  },
+  {
+    id: 'carwash-subscription-model',
+    title: 'The "Invisible" Carwash Revenue Stream',
+    category: 'SME Operations',
+    expertNote: 'SMEs often miss the 40% uptick potential in subscription-based fleet accounts.',
+    date: 'February 15, 2026',
+    contentType: 'text',
+    content: `
+### The Discovery
+During my multi-city SME audit, I found that carwashes relying solely on walk-ins have a 60% higher volatility rate.
+
+### The Proprietary Solution
+Implementing a **Subscription Fleet Node** for local SMEs (Lalamove, Grab, local couriers) creates a baseline cashflow that covers 100% of operational costs before the first walk-in even arrives.
+
+### Key Metrics to Track:
+- **Subscription Churn:** Ideally < 5%
+- **Fleet Density:** Target 20 vehicles per node
+- **Up-sell conversion:** 15% minimum
+    `,
+    comments: []
+  }
+];

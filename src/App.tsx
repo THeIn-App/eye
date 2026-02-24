@@ -15,12 +15,14 @@ import {
   MessageSquare,
   CreditCard,
   X,
-  Building2
+  Building2,
+  Lock
 } from 'lucide-react';
 import { Checklist } from './components/Checklist';
 import { Discussion } from './components/Discussion';
 import { MarketTrendChart, SalesFunnelDiagram } from './components/Visuals';
 import { OrgChartExpert } from './components/OrgChartExpert';
+import { EYEVault } from './components/EYEVault';
 import { Report } from './components/Report';
 import { PricingTiers } from './components/PricingTiers';
 import { InquiryFlow } from './components/InquiryFlow';
@@ -30,7 +32,7 @@ import { ChecklistItem, SubscriptionLevel } from './types';
 import { cn } from './lib/utils';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'checklist' | 'report' | 'eye-interaction'>('eye-interaction');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'checklist' | 'report' | 'eye-interaction' | 'eye-vault'>('eye-interaction');
   const [subscriptionLevel, setSubscriptionLevel] = useState<SubscriptionLevel>('trial');
   const [showPricing, setShowPricing] = useState(false);
   const [selectedTier, setSelectedTier] = useState<SubscriptionLevel | null>(null);
@@ -76,6 +78,7 @@ export default function App() {
         <div className="flex-1 px-4 py-8 space-y-2">
           {[
             { id: 'eye-interaction', label: 'EYE Interaction', icon: MessageSquare },
+            { id: 'eye-vault', label: 'EYE Vault', icon: Lock },
             { id: 'dashboard', label: 'Market Insight', icon: LayoutDashboard },
             { id: 'checklist', label: 'Strategy Audit', icon: CheckSquare },
             { id: 'report', label: 'Final Report', icon: FileText },
@@ -202,6 +205,21 @@ export default function App() {
                     </div>
                   </div>
                 </div>
+              </motion.div>
+            )}
+
+            {activeTab === 'eye-vault' && (
+              <motion.div
+                key="eye-vault"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+              >
+                <div className="mb-8">
+                  <h4 className="font-serif text-2xl font-bold italic mb-2">EYE Vault: Proprietary Discovery</h4>
+                  <p className="text-sm text-ivory/40">Exclusive industrial insights and SME strategic nodes.</p>
+                </div>
+                <EYEVault />
               </motion.div>
             )}
 
