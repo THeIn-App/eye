@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0A0A0C;
+  --color-charcoal: #141418;
+  --color-graphite: #1E1E24;
+  --color-gold: #C8A951;
+  --color-gold-warm: #E5C46A;
+  --color-ivory: #F5F0E8;
+  --color-rust-accent: #8B3A1C;
+
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-obsidian text-ivory font-sans antialiased;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
