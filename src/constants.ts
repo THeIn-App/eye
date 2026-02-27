@@ -212,6 +212,7 @@ export const EYE_VAULT_ARTICLES: VaultArticle[] = [
     contentType: 'video',
     content: 'An deep-dive into the proprietary "Last Mile" distribution hub design that reduces overhead by 32%.',
     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Placeholder
+    imageUrl: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800',
     comments: [
       { id: 'c1', author: 'Strategic Partner', timestamp: '2 hours ago', text: 'The distribution density chart is a game changer.' }
     ]
@@ -235,6 +236,7 @@ Implementing a **Subscription Fleet Node** for local SMEs (Lalamove, Grab, local
 - **Fleet Density:** Target 20 vehicles per node
 - **Up-sell conversion:** 15% minimum
     `,
+    imageUrl: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=800',
     comments: []
   }
 ];

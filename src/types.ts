@@ -63,8 +63,9 @@ export interface VaultArticle {
   category: string;
   expertNote: string;
   date: string;
-  contentType: 'text' | 'video';
+  contentType: 'text' | 'video' | 'mixed';
   content: string; // Markdown or description
+  imageUrl?: string;
   videoUrl?: string;
   comments: VaultComment[];
 }

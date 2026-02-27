@@ -26,7 +26,7 @@ export const VaultArticleViewer: React.FC<VaultArticleViewerProps> = ({ article,
     };
 
     return (
-        <div className="space-y-12 pb-24">
+        <div className="space-y-12 pb-24 animate-in fade-in duration-700">
             {/* Header Navigation */}
             <div className="flex items-center justify-between">
                 <button
@@ -63,22 +63,45 @@ export const VaultArticleViewer: React.FC<VaultArticleViewerProps> = ({ article,
                     </div>
 
                     {/* Media Section */}
-                    <div className="glass-panel overflow-hidden group">
-                        {article.contentType === 'video' ? (
-                            <div className="aspect-video relative bg-obsidian flex items-center justify-center">
-                                <video
-                                    controls
-                                    className="w-full h-full object-cover"
-                                    poster="/vault-video-placeholder.jpg"
-                                >
-                                    <source src={article.videoUrl} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div className="absolute inset-0 bg-gold/5 pointer-events-none" />
+                    <div className="space-y-8">
+                        {article.videoUrl && (
+                            <div className="glass-panel overflow-hidden group shadow-[0_0_50px_rgba(200,169,81,0.05)]">
+                                <div className="aspect-video relative bg-obsidian flex items-center justify-center">
+                                    <video
+                                        controls
+                                        className="w-full h-full object-cover"
+                                    >
+                                        <source src={article.videoUrl} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div className="absolute top-4 right-4 px-3 py-1 bg-obsidian/80 backdrop-blur-md border border-gold/20 text-[9px] font-mono text-gold rounded-sm uppercase tracking-widest">
+                                        Vlog Content
+                                    </div>
+                                </div>
                             </div>
-                        ) : (
-                            <div className="aspect-[21/9] bg-gradient-to-br from-gold/20 via-gold/5 to-transparent flex items-center justify-center">
-                                <FileText className="w-16 h-16 text-gold/20" />
+                        )}
+
+                        {article.imageUrl && (
+                            <div className="glass-panel overflow-hidden group aspect-[21/9] relative shadow-[0_0_50px_rgba(200,169,81,0.05)]">
+                                <img
+                                    src={article.imageUrl}
+                                    className="w-full h-full object-cover"
+                                    alt={article.title}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 to-transparent" />
+                                <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                                    <div className="p-1.5 bg-gold/20 backdrop-blur-md border border-gold/20 rounded-sm">
+                                        <FileText className="w-3 h-3 text-gold" />
+                                    </div>
+                                    <span className="text-[10px] font-mono text-gold uppercase tracking-widest">Visual Asset Evidence</span>
+                                </div>
+                            </div>
+                        )}
+
+                        {!article.videoUrl && !article.imageUrl && (
+                            <div className="glass-panel aspect-[21/9] bg-gradient-to-br from-gold/10 via-charcoal to-transparent flex flex-col items-center justify-center gap-4 border border-dashed border-gold/20">
+                                <FileText className="w-12 h-12 text-gold/20" />
+                                <p className="text-[10px] font-mono text-gold/40 uppercase tracking-widest">Proprietary Textual Discovery</p>
                             </div>
                         )}
                     </div>
@@ -88,12 +111,13 @@ export const VaultArticleViewer: React.FC<VaultArticleViewerProps> = ({ article,
                         <div className="text-ivory/80 leading-relaxed space-y-6">
                             <ReactMarkdown
                                 components={{
-                                    h3: ({ node, ...props }) => <h3 className="text-xl font-serif font-bold italic text-gold mt-8 mb-4" {...props} />,
-                                    p: ({ node, ...props }) => <p className="mb-4" {...props} />,
-                                    ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-2 mb-4" {...props} />,
-                                    ol: ({ node, ...props }) => <ol className="list-decimal list-inside space-y-2 mb-4" {...props} />,
-                                    li: ({ node, ...props }) => <li className="text-sm list-item" {...props} />,
-                                    strong: ({ node, ...props }) => <strong className="text-gold" {...props} />
+                                    h3: ({ node, ...props }) => <h3 className="text-2xl font-serif font-bold italic text-gold mt-12 mb-6" {...props} />,
+                                    p: ({ node, ...props }) => <p className="mb-6 text-base" {...props} />,
+                                    ul: ({ node, ...props }) => <ul className="list-disc list-outside ml-4 space-y-3 mb-6" {...props} />,
+                                    ol: ({ node, ...props }) => <ol className="list-decimal list-outside ml-4 space-y-3 mb-6" {...props} />,
+                                    li: ({ node, ...props }) => <li className="text-sm list-item text-ivory/70" {...props} />,
+                                    strong: ({ node, ...props }) => <strong className="text-gold font-bold" {...props} />,
+                                    blockquote: ({ node, ...props }) => <blockquote className="border-l-2 border-gold/40 pl-6 italic text-ivory/50 my-8" {...props} />
                                 }}
                             >
                                 {article.content}
@@ -110,8 +134,8 @@ export const VaultArticleViewer: React.FC<VaultArticleViewerProps> = ({ article,
                 {/* Sidebar Sidebar */}
                 <div className="lg:col-span-4 space-y-8">
                     {/* Expert Note Panel */}
-                    <div className="p-8 bg-gold/5 border border-gold/20 rounded-sm relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-4 opacity-10">
+                    <div className="p-8 bg-gold/5 border border-gold/20 rounded-sm relative overflow-hidden group hover:bg-gold/10 transition-colors duration-500 shadow-xl">
+                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                             <Sparkles className="w-16 h-16 text-gold" />
                         </div>
                         <h4 className="font-serif font-bold italic text-gold text-xl mb-4">EYE's Private Note</h4>
@@ -121,7 +145,7 @@ export const VaultArticleViewer: React.FC<VaultArticleViewerProps> = ({ article,
                     </div>
 
                     {/* Dedicated Inquiry Integration */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 sticky top-24">
                         <h4 className="font-mono text-[10px] uppercase tracking-[0.3em] text-gold pl-1">Guided Q&A</h4>
                         <DedicatedInquiry articleTitle={article.title} context={article.content} />
                     </div>

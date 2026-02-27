@@ -4,30 +4,59 @@ import { Search, Filter, Play, FileText, ChevronRight, Lock } from 'lucide-react
 import { EYE_VAULT_ARTICLES } from '../constants';
 import { VaultArticle } from '../types';
 import { VaultArticleViewer } from './VaultArticleViewer';
+import { VaultUploader } from './VaultUploader';
 import { cn } from '../lib/utils';
 
 export const EYEVault: React.FC = () => {
     const [selectedArticle, setSelectedArticle] = useState<VaultArticle | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
+    const [localArticles, setLocalArticles] = useState<VaultArticle[]>(EYE_VAULT_ARTICLES);
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<string>('All');
 
-    const categories = ['All', ...new Set(EYE_VAULT_ARTICLES.map(a => a.category))];
+    const categories = ['All', ...new Set(localArticles.map(a => a.category))];
 
-    const filteredArticles = EYE_VAULT_ARTICLES.filter(article => {
+    const filteredArticles = localArticles.filter(article => {
         const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             article.content.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = activeCategory === 'All' || article.category === activeCategory;
         return matchesSearch && matchesCategory;
     });
 
+    const handleUpload = (newArticle: VaultArticle) => {
+        setLocalArticles([newArticle, ...localArticles]);
+        setIsUploading(false);
+    };
+
     if (selectedArticle) {
         return <VaultArticleViewer article={selectedArticle} onBack={() => setSelectedArticle(null)} />;
     }
 
+    if (isUploading) {
+        return <VaultUploader onUpload={handleUpload} onCancel={() => setIsUploading(false)} />;
+    }
+
     return (
-        <div className="space-y-12">
+        <div className="space-y-12 animate-in fade-in duration-700">
+            {/* Header & Actions */}
+            <div className="flex flex-col md:flex-row gap-8 justify-between items-start md:items-center">
+                <div>
+                    <h2 className="text-3xl font-serif font-bold italic text-ivory">Proprietary Vault</h2>
+                    <p className="text-xs text-gold/40 font-mono uppercase tracking-[0.3em] mt-1">Exclusive SME & Industrial Intelligence</p>
+                </div>
+                <button
+                    onClick={() => setIsUploading(true)}
+                    className="px-8 py-3 bg-gold text-obsidian font-bold text-[10px] uppercase tracking-[0.2em] rounded-sm hover:bg-gold-warm transition-all shadow-[0_0_20px_rgba(200,169,81,0.1)] flex items-center gap-3 group"
+                >
+                    <div className="p-1 bg-obsidian/20 rounded-sm group-hover:scale-110 transition-transform">
+                        <Play className="w-3 h-3 rotate-[-90deg]" />
+                    </div>
+                    Post New Insight
+                </button>
+            </div>
+
             {/* Search & Filter Bar */}
-            <div className="flex flex-col md:flex-row gap-6 justify-between items-center">
+            <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-charcoal/20 p-4 rounded-sm border border-gold/5">
                 <div className="relative w-full md:w-96">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/40" />
                     <input
